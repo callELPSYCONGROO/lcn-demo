@@ -25,3 +25,5 @@
 /.nb-gradle/
 
 .git
+.idea
+*/target/
