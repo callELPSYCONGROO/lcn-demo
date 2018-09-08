@@ -30,4 +30,9 @@ public class StudentController {
 	public Result onebytwo() {
 		return studentService.insertTwo();
 	}
+
+	@RequestMapping("/test")
+	public Result test() {
+		return Result.builder().result("成功").build();
+	}
 }
