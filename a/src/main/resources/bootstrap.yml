@@ -1,0 +1,65 @@
+server:
+  port: 10011
+
+spring:
+  application:
+    name: a
+  datasource:
+    username: ${JDBC_USERNAME}
+    name: ${JDBC_DB_NAME}
+    password: ${JDBC_PASSWORD}
+    url: ${JDBC_URL}
+    druid:
+      filters: stat,wall
+      driver-class-name: com.mysql.jdbc.Driver
+      initial-size: 1
+      min-idle: 1
+      max-active: 30
+      max-wait: 10000
+      time-between-eviction-runs-millis: 20000
+      validation-query: SELECT 1
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 5000
+          merge-sql: true
+      max-pool-prepared-statement-per-connection-size: 20
+      connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 500MB
+
+pagehelper:
+  reasonable: false
+  support-methods-arguments: true
+  offset-as-page-num: true
+  row-bounds-with-count: true
+  page-size-zero: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10001/eureka/
+  instance:
+    prefer-ip-address: true
+    ip-address: ${EUREKA_INSTANCE_IP_ADDRESS:127.0.0.1}
+
+mybatis:
+  mapper-locations: classpath:*.xml
+  type-aliases-package: com.wuhenjian.lcndemo.a.domain
+  configuration:
+    autoRuntimeDialect: true
+
+feign:
+  hystrix:
+    enabled: true
+hystrix:
+  command:
+      default:
+        execution:
+          timeout:
+            enabled: false

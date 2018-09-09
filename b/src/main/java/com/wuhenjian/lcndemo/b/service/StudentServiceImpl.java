@@ -27,7 +27,7 @@ public class StudentServiceImpl implements StudentService {
 		s.setName("B 学生");
 		s.setAge(Math.toIntExact(System.currentTimeMillis() / 1000000));
 		s.setDate(new Date());
-		studentDao.save(s);
+		studentDao.insert(s);
 		return Result.builder().result("插入B成功").build();
 	}
 
@@ -37,7 +37,7 @@ public class StudentServiceImpl implements StudentService {
 		s.setName("B 学生");
 		s.setAge(Math.toIntExact(System.currentTimeMillis() / 1000000));
 		s.setDate(new Date());
-		studentDao.save(s);
+		studentDao.insert(s);
 		cFeign.insertC();
 		return Result.builder().result("插入BC成功").build();
 	}

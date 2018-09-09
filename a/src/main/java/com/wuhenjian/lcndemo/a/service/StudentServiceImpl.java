@@ -45,7 +45,7 @@ public class StudentServiceImpl implements StudentService {
 		s.setName("A 学生");
 		s.setAge(Math.toIntExact(System.currentTimeMillis() / 1000000));
 		s.setDate(new Date());
-		studentDao.save(s);
+		studentDao.insert(s);
 		return Result.builder().result("插入A成功").build();
 	}
 }
