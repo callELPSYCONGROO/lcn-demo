@@ -54,7 +54,6 @@ mybatis:
   configuration:
     autoRuntimeDialect: true
 
-# ����hystrix�۶�
 feign:
   hystrix:
     enabled: true
@@ -62,5 +61,14 @@ hystrix:
   command:
       default:
         execution:
+          isolation:
+            strategy: SEMAPHORE
+            thread:
+              timeoutInMilliseconds: 5000
           timeout:
             enabled: false
+
+# 将tx-manager对应的地址
+tx:
+  manager:
+    url: http://127.0.0.1:10009/tx/manager/
